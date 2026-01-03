@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Archie Webhook</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+</head>
+<body>
+    <div class="success-toast" id="successToast"></div>
+    <div class="error-toast" id="errorToast"></div>
+    
+    <!-- Reset Password Modal -->
+    <div class="modal" id="resetPasswordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Reset Password</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="resetPasswordForm">
+                <input type="hidden" id="resetGameId">
+                <div class="form-group">
+                    <label>Game Name</label>
+                    <input type="text" id="resetGameName" readonly style="opacity: 0.7;">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="text" id="resetNewPassword" minlength="6" required placeholder="Enter new password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Reset Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>🔐 Admin Dashboard</h1>
+                <p>User Management & System Overview</p>
+            </div>
+            <button class="btn" onclick="window.location.href='/'">🚪 Logout</button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <div class="value" id="totalUsers">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Games</h3>
+                <div class="value" id="activeGames">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>System Status</h3>
+                <div class="value" style="font-size: 24px;">🟢 Online</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>👥 User Management</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Game ID</th>
+                            <th>Game Name</th>
+                            <th>Universe ID</th>
+                            <th>Last Active</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px;">
+                                <div class="loading"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/admin-dashboard.js"></script>
+    <script>
+        const token = '{{token}}';
+    </script>
+</body>
+</html>
