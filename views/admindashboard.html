@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Archie Webhook</title>
     <link rel="stylesheet" href="/css/admindashboard.css">
+    <!-- Define token BEFORE loading JavaScript -->
+    <script>
+        const token = '{{token}}';
+    </script>
 </head>
 <body>
     <div class="success-toast" id="successToast"></div>
@@ -85,9 +89,7 @@
         </div>
     </div>
     
+    <!-- Load JavaScript AFTER token is defined -->
     <script src="/js/admindashboard.js"></script>
-    <script>
-        const token = '{{token}}';
-    </script>
 </body>
 </html>
