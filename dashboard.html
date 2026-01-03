@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{gameName}} - Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="success-toast" id="successToast"></div>
+    <div class="error-toast" id="errorToast"></div>
+    
+    <!-- Change Password Modal -->
+    <div class="modal" id="changePasswordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Change Password</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" minlength="6" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="confirmPassword" minlength="6" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>🎮 {{gameName}}</h1>
+                <p>Webhook Integration Dashboard</p>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-secondary" onclick="openChangePasswordModal()">🔑 Change Password</button>
+                <button class="btn" onclick="window.location.href='/'">🚪 Logout</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>📋 Game Information</h3>
+            <div class="info-row">
+                <span class="info-label">Universe ID</span>
+                <span class="info-value">{{universeId}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Topic</span>
+                <span class="info-value">{{topic}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Webhook Secret</span>
+                <span class="info-value">
+                    <span class="badge badge-success">✓ Configured</span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>🔐 Security Status</h3>
+            <div class="info-row">
+                <span class="info-label">Saweria Token</span>
+                <span class="info-value">{{saweriaBadge}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">SocialBuzz Token</span>
+                <span class="info-value">{{socialbuzzBadge}}</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>🔗 Webhook URLs</h3>
+            <p style="color: #94a3b8; font-size: 13px; margin-bottom: 20px;">
+                Gunakan URL berikut di settings Saweria dan SocialBuzz. Klik "Copy" untuk menyalin.
+            </p>
+            
+            <div class="url-box">
+                <div class="url-label">
+                    <span>📡 Saweria Webhook</span>
+                    <button class="btn" onclick="copyUrl('saweriaUrl')">📋 Copy</button>
+                </div>
+                <div class="url-text" id="saweriaUrl">{{baseUrl}}/{{webhookSecret}}/saweria</div>
+            </div>
+            
+            <div class="url-box">
+                <div class="url-label">
+                    <span>📡 SocialBuzz Webhook</span>
+                    <button class="btn" onclick="copyUrl('socialbuzzUrl')">📋 Copy</button>
+                </div>
+                <div class="url-text" id="socialbuzzUrl">{{baseUrl}}/{{webhookSecret}}/socialbuzz</div>
+            </div>
+            
+            <div class="url-box">
+                <div class="url-label">
+                    <span>🧪 Test Endpoint</span>
+                    <button class="btn" onclick="copyUrl('testUrl')">📋 Copy</button>
+                </div>
+                <div class="url-text" id="testUrl">{{baseUrl}}/{{webhookSecret}}/test?password={{password}}</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>💡 Quick Tips</h3>
+            <div style="color: #94a3b8; font-size: 14px; line-height: 1.8;">
+                <p>• Donatur format: <code style="color: #10b981;">[RobloxUsername] Message</code></p>
+                <p>• Alternatif: <code style="color: #10b981;">@RobloxUsername Message</code></p>
+                <p>• Alternatif: <code style="color: #10b981;">RobloxUsername: Message</code></p>
+                <p>• Alternatif: <code style="color: #10b981;">RobloxUsername (tanpa format khusus)</code></p>
+                <p>• Webhook secret minimal 16 karakter</p>
+                <p>• Token verification otomatis jika di-set</p>
+                <p>• Jangan share webhook URLs ke siapapun</p>
+                <p>• Gunakan tombol "Change Password" untuk ganti password</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/dashboard.js"></script>
+    <script>
+        const currentPassword = '{{password}}';
+    </script>
+</body>
+</html>
