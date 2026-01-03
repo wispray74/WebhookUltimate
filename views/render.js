@@ -58,7 +58,7 @@ function renderDashboard(game, password, baseUrl) {
  * Render admin dashboard view
  */
 function renderAdminDashboard(token) {
-    const viewPath = path.join(__dirname, '..', 'views', 'admin-dashboard.html');
+    const viewPath = path.join(__dirname, '..', 'views', 'admindashboard.html');
     let template = fs.readFileSync(viewPath, 'utf8');
     
     template = template.replace(/\{\{token\}\}/g, token);
